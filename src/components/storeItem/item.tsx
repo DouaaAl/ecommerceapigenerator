@@ -1,10 +1,8 @@
 "use client"
 import React, { useState } from 'react'
-import Styles from '@/app/(main)/page.module.css'
 import Image from 'next/image'
-import { revalidatePath, revalidateTag } from 'next/cache'
 import {deleteStore, updateStore} from "@/actions/store"
-import { redirect, useRouter } from 'next/navigation'
+import {  useRouter } from 'next/navigation'
 
 interface item {
     id: string,
