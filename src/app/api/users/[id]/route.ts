@@ -1,8 +1,8 @@
 import { db } from "@/utils/db";
 import { NextApiRequest, NextApiResponse } from "next";
-import { NextResponse } from "next/server";
+import { NextRequest, NextResponse } from "next/server";
 
-export const GET = async(req: any | NextApiRequest, res: NextApiResponse) =>{
+export const GET = async(req: any | NextRequest | Request, res: NextApiResponse) =>{
     const body = await req.json();
 
 
