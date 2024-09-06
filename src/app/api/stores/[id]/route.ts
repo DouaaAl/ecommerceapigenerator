@@ -1,8 +1,8 @@
 import { db } from "@/utils/db";
 import { NextApiRequest, NextApiResponse } from "next"
-import {  NextResponse } from "next/server"
+import {  NextRequest, NextResponse } from "next/server"
 
-export const DELETE = async(req: any | NextApiRequest, res: NextApiResponse) =>{
+export const DELETE = async(req: any | NextRequest | Request, res: NextApiResponse) =>{
     const body = await req.json();
     const id = req.url.split("/")[req.url.split("/").length - 1];
 
@@ -87,7 +87,7 @@ export const DELETE = async(req: any | NextApiRequest, res: NextApiResponse) =>{
     }
 }
 
-export const PUT = async(req: any | NextApiRequest, res: NextApiResponse) =>{
+export const PUT = async(req: any | NextRequest | Request, res: NextApiResponse) =>{
     const body = await req.json();
     const id = req.url.split("/")[req.url.split("/").length - 1];
 
