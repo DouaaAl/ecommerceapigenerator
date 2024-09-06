@@ -1,8 +1,8 @@
 import { db } from "@/utils/db";
 import { NextApiRequest, NextApiResponse } from "next";
-import { NextResponse } from "next/server";
+import { NextRequest, NextResponse } from "next/server";
 
-export const GET =async (req: NextApiRequest, res: NextApiResponse) =>{
+export const GET =async (req: Request | NextRequest, res: NextApiResponse) =>{
     const productId = req.url?.split("/")[req.url?.split("/").length - 1];
 
     const product = await db.product.findFirst({
