@@ -1,0 +1,194 @@
+.colors {
+    margin: 3rem auto;
+    width: 80%;
+    text-align: center;
+}
+
+.colors .title {
+    font-size: 50px;
+    color: var(--darker-blue);
+}
+
+.colors form {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 60%;
+    margin: 3rem auto;
+}
+
+.colors form input {
+    width: 80%;
+    height: 40px;
+    outline: none;
+    border: 1px solid var(--darker-blue);
+    padding: 7px;
+}
+
+.colors form button {
+    width: 20%;
+    height: 40px;
+    background-color: var(--darker-blue);
+    color: var(--white);
+    outline: none;
+}
+
+.table {
+    display: flex;
+    flex-direction: column;
+    margin: 0 auto;
+    width: 60%;
+}
+
+.table > div {
+    display: grid;
+    grid-template-columns: repeat(2, 50%);
+    align-items: center;
+    justify-content: center;
+}
+
+.table > div:first-child {
+    background-color: var(--darker-blue);
+    color: var(--white);
+}
+
+.table > div:first-child h3:first-child {
+    border-right: 1px solid var(--white);
+}
+
+.table div h3 {
+    padding: 1rem;
+    height: 100%;
+    width: 100%;
+    text-wrap: wrap;
+    border: 1px solid var(--darker-blue);
+}
+
+.table article:first-child {
+    background-color: var(--darker-blue);
+}
+
+.table article:first-child h3 {
+    color: var(--white);
+}
+
+.table article:first-child h3:first-child {
+    border-right: 1px solid var(--white);
+}
+
+.CRUD {
+  text-align: left;
+  margin-top: 3rem;
+}
+
+.CRUD h1 {
+  font-size: 32px;
+  margin-bottom: 0.5rem;
+  color: var(--darker-blue);
+}
+
+.CRUD h2 {
+  font-size: 20px;
+  color: var(--dark-blue);
+}
+
+.CRUD h4 {
+  font-size: 16px;
+  margin: 0.5rem 0 1rem 0;
+}
+
+@media screen and (max-width: 1100px){
+    .colors {
+      width: 100%;
+    }
+    
+    .colors .title {
+      font-size: 35px;
+    }
+    
+    .colors form {
+      width: 80%;
+    }
+    
+    .colors form input{
+      width: 70%;
+    }
+    
+    .colors form button {
+      width: 30%;
+    }
+    
+    .table {
+      width: 80%;
+    }
+
+    .CRUD {
+      text-align: left;
+      margin: 2.2rem auto 1rem auto;
+      width: 90%;
+    }
+    
+    .CRUD h1 {
+      font-size: 28px;
+      margin-bottom: 0.5rem;
+    }
+    
+    .CRUD h2 {
+      font-size: 18px;
+    }
+    
+    .CRUD h4 {
+      font-size: 16px;
+      margin: 0.5rem 0 1rem 0;
+    }
+
+  }
+  
+  @media screen and (max-width: 680px){
+    .colors .title {
+      font-size: 25px;
+    }
+    
+    .colors form {
+      width: 90%;
+    }
+    
+    .colors form input{
+      width: 70%;
+      height: 35px;
+    }
+    
+    .colors form button {
+      width: 30%;
+      height: 35px;
+    }
+    
+    .table {
+      width: 90%;
+    }
+  
+    .table article h3 {
+      padding: 0.7rem ;
+      font-size: 17px;
+    }
+
+    .CRUD {
+      text-align: left;
+      margin-top: 2rem;
+    }
+    
+    .CRUD h1 {
+      font-size: 25px;
+      margin-bottom: 0.3rem;
+    }
+    
+    .CRUD h2 {
+      font-size: 16px;
+    }
+    
+    .CRUD h4 {
+      font-size: 14px;
+      margin: 0.5rem 0 1rem 0;
+    }
+  
+  }

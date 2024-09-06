@@ -1,0 +1,38 @@
+.subNav {
+    width: 100%;
+    background-color: var(--dark-green);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 1rem;
+    padding: 1rem;
+}
+
+.subNav a {
+    text-decoration: none;
+    color: var(--white);
+    border-bottom: 1px solid transparent;
+    margin-top: 0;
+}
+
+.subNav a:hover{
+    border-bottom: 1px solid var(--white);
+    margin-top: -5px;
+}
+
+@media screen and (max-width: 980px){
+    .subNav a {
+        font-size: 14px;
+    }
+}
+
+@media screen and (max-width: 630px){
+    .subNav {
+        flex-direction: column;
+    }
+
+    .subNav a:hover{
+        margin-top: 0;
+    }
+
+}

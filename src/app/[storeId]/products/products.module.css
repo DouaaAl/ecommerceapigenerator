@@ -1,0 +1,217 @@
+.products {
+    margin: 3rem auto;
+    width: 80%;
+    text-align: center;
+}
+
+.products .title {
+    font-size: 3rem;
+    color: var(--darker-blue);
+}
+
+.products form {
+    margin: 3rem auto;
+    width: 60%;
+    height: 40px;
+}
+
+.products form input {
+    width: 80%;
+    height: 40px;
+    padding: 7px;
+    border: 1px solid var(--darker-blue);
+    outline: none;
+}
+
+.products form button {
+    width: 20%;
+    height: 40px;
+    background-color: var(--darker-blue);
+    color: var(--white);
+}
+
+.table {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    width: 80%;
+    margin: 3rem auto;
+}
+
+.table div {
+    width: 100%;
+    display: grid;
+    grid-template-columns: repeat(8, calc(100%/8));
+    text-align: center;
+    justify-content: center;
+    align-content: center;
+}
+
+.table div h3 {
+    padding: 0.5rem;
+    border: 1px solid var(--darker-blue);
+    text-align: center;
+    font-size: 16px;
+    flex-wrap: wrap;
+}
+
+.table div h3 img {
+    object-fit: contain;
+}
+
+.table div:first-child {
+    background-color: var(--darker-blue);
+}
+
+.table div:first-child h3 {
+    color: var(--white);
+    border-right: 1px solid var(--white);
+}
+
+.table div:first-child h3:last-child{
+    border-right: 0;
+}
+
+.CRUD {
+  text-align: left;
+  margin-top: 3rem;
+}
+
+.CRUD h1 {
+  font-size: 32px;
+  margin-bottom: 0.5rem;
+  color: var(--darker-blue);
+}
+
+.CRUD h2 {
+  font-size: 20px;
+  color: var(--dark-blue);
+}
+
+.CRUD h4 {
+  font-size: 16px;
+  margin: 0.5rem 0 1rem 0;
+}
+
+
+@media screen and (max-width: 1100px){
+    .products {
+      width: 100%;
+    }
+    
+    .products .title {
+      font-size: 35px;
+    }
+    
+    .products form {
+      width: 80%;
+    }
+    
+    .products form input{
+      width: 70%;
+    }
+    
+    .products form button {
+      width: 30%;
+    }
+    
+    .table {
+      width: 80%;
+    }
+
+    .table div h3 {
+        padding: 0.2rem;
+        font-size: 14px;
+        text-align: center;
+    }
+    .table div h3 img {
+        width: 30px;
+        height: 30px;
+    }
+
+    .CRUD {
+      text-align: left;
+      margin: 2.2rem auto 1rem auto;
+      width: 90%;
+    }
+    
+    .CRUD h1 {
+      font-size: 28px;
+      margin-bottom: 0.5rem;
+    }
+    
+    .CRUD h2 {
+      font-size: 18px;
+    }
+    
+    .CRUD h4 {
+      font-size: 16px;
+      margin: 0.5rem 0 1rem 0;
+    }
+  }
+  
+  @media screen and (max-width: 720px){
+    .products .title {
+      font-size: 25px;
+    }
+    
+    .products form {
+      width: 95%;
+    }
+    
+    .products form input{
+      width: 70%;
+      height: 35px;
+    }
+    
+    .products form button {
+      width: 30%;
+      height: 35px;
+    }
+    
+    .table {
+      width: 95%;
+    }
+  
+
+    .table div h3 {
+        padding: 0.2rem;
+        font-size: 11px;
+        text-align: center;
+    }
+
+    .table div h3 img {
+        width: 20px;
+        height: 20px;
+    }
+
+    .table div h3:nth-child(2),
+    .table div h3:nth-child(3),
+    .table div h3:nth-child(4){
+        display: none;
+    }
+
+    .table div {
+        grid-template-columns: repeat(5, calc(100%/5));
+    }
+
+    .CRUD {
+      text-align: left;
+      margin-top: 2rem;
+    }
+    
+    .CRUD h1 {
+      font-size: 25px;
+      margin-bottom: 0.3rem;
+    }
+    
+    .CRUD h2 {
+      font-size: 16px;
+    }
+    
+    .CRUD h4 {
+      font-size: 14px;
+      margin: 0.5rem 0 1rem 0;
+    }
+  }

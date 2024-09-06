@@ -1,0 +1,147 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider  = "postgresql"
+  url  	    = env("DATABASE_URL")
+}
+
+model User {
+  id           String    @id @default(uuid())
+  clerkUserId  String    @unique
+  email        String    @unique
+  name         String?
+  imageUrl     String?
+
+  createdAt    DateTime  @default(now())
+  updatedAt    DateTime  @updatedAt
+
+  stores       Store[]
+
+
+}
+
+model Store {
+  id           String    @id @default(uuid())
+  name         String    @unique
+  userId       String
+  user         User      @relation(fields: [userId], references: [id])
+  createdAt    DateTime  @default(now())
+  updatedAt    DateTime  @updatedAt
+
+  Sizes        Size[]
+  Category     Category[]
+  Product      Product[]
+
+  Color        Color[]
+
+  Order Order[]
+}
+
+model Category {
+  id           String    @id @default(uuid())
+  name         String    @unique
+  storeId      String
+  store        Store     @relation(fields: [storeId], references: [id])
+  createdAt    DateTime  @default(now())
+  updatedAt    DateTime  @updatedAt
+
+  Products     Product[]
+}
+
+model Image {
+  id           String    @id @default(uuid())
+  url          String
+  productId    String?
+  product      Product?  @relation(fields: [productId], references: [id])
+}
+
+model Product {
+  id           String    @id @default(uuid())
+  name         String
+  price        Int
+  featured     Boolean
+  quantity     Int
+  description  String
+  createdAt    DateTime  @default(now())
+  updatedAt    DateTime  @updatedAt
+
+  storeId      String
+  store        Store     @relation(fields: [storeId], references: [id])
+
+
+  Sizes        Size[]
+  Categories   Category[]
+  Images       Image[]
+  Color        Color[]
+
+  OrderItem OrderItem[]
+}
+
+model Size {
+  id           String    @id @default(uuid())
+  name         String
+  storeId      String
+  store        Store     @relation(fields: [storeId], references: [id])
+
+  Products     Product[]
+}
+
+model Color {
+  id           String    @id @default(uuid())
+  name         String
+  storeId      String
+  store        Store     @relation(fields: [storeId], references: [id])
+
+  Products     Product[]
+
+}
+
+model Order {
+  id          String      @id @default(uuid())
+  storeId     String
+  store       Store       @relation(fields: [storeId], references: [id])
+  totalAmount Int
+  status      String
+  createdAt   DateTime    @default(now())
+  updatedAt   DateTime    @updatedAt
+  orderItems  OrderItem[]
+  shipping    ShippingDetail?
+  payment     PaymentDetail?
+}
+
+model OrderItem {
+  id          String      @id @default(uuid())
+  productId   String
+  product     Product     @relation(fields: [productId], references: [id])
+  orderId     String
+  order       Order       @relation(fields: [orderId], references: [id])
+  quantity    Int
+  price       Int
+}
+
+model ShippingDetail {
+  id          String      @id @default(uuid())
+  orderId     String @unique
+  order       Order       @relation(fields: [orderId], references: [id])
+  address     String
+  city        String
+  state       String
+  postalCode  String
+  country     String
+  createdAt   DateTime    @default(now())
+  updatedAt   DateTime    @updatedAt
+}
+
+model PaymentDetail {
+  id          String      @id @default(uuid())
+  orderId     String @unique
+  order       Order       @relation(fields: [orderId], references: [id])
+  paymentMethod String
+  status      String
+  transactionId String?
+  createdAt   DateTime    @default(now())
+  updatedAt   DateTime    @updatedAt
+}
+

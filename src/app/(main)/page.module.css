@@ -1,0 +1,200 @@
+.main {
+  min-height: 100vh;
+  width: 90%;
+  text-align: center;
+  margin: 5rem auto;
+}
+
+.main .title {
+  color: var(--dark-pink);
+  font-size: 40px;
+}
+
+.main form {
+  display: flex;
+  width: 60%;
+  margin: 3rem auto;
+  border: 1px solid var(--dark-pink);
+}
+
+.main form input{
+  width: 80%;
+  height: 40px;
+  padding: 7px;
+  outline: none;
+  border: none;
+}
+
+.main form button {
+  width: 20%;
+  height: 40px;
+  padding: 0rem 1.2rem;
+  background-color: var(--dark-pink);
+  outline: none;
+  border: none;
+  cursor: pointer;
+  color: var(--white);
+}
+
+.table {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  background-color: var(--white);
+  width: 60%;
+  margin: 0 auto;
+}
+
+.table article {
+  display: flex;
+  justify-content: center;
+  height: 100%;
+  align-items: center;
+  width: 100%;
+  border: 1px solid var(--dark-pink);
+}
+
+.table article:first-child{
+  border-bottom: none;
+  background-color: var(--dark-pink);
+}
+
+.table article:first-child h3 {
+  color: var(--white);
+}
+
+.table article:first-child h3:first-child {
+  border-right: 1px solid var(--white)
+}
+.table article h3 {
+  display: block;
+  width: 100%;
+  height: 100%;
+  text-align: center;
+  padding: 1rem ;
+  color: var(--dark-pink);
+}
+
+.table article h3:first-child {
+  border-right: 1px solid var(--dark-pink);
+}
+
+.CRUD {
+  text-align: left;
+  margin-top: 3rem;
+}
+
+.CRUD h1 {
+  font-size: 32px;
+  margin-bottom: 0.5rem;
+  color: var(--darker-blue);
+}
+
+.CRUD h2 {
+  font-size: 20px;
+  color: var(--dark-blue);
+}
+
+.CRUD h4 {
+  font-size: 16px;
+  margin: 0.5rem 0 1rem 0;
+}
+
+@media screen and (max-width: 1100px){
+  .main {
+    width: 100%;
+  }
+  
+  .main .title {
+    font-size: 35px;
+  }
+  
+  .main form {
+    width: 80%;
+  }
+  
+  .main form input{
+    width: 70%;
+  }
+  
+  .main form button {
+    width: 30%;
+  }
+  
+  .table {
+    width: 80%;
+  }
+
+  .CRUD {
+    text-align: left;
+    margin: 2.2rem auto 1rem auto;
+    width: 90%;
+  }
+  
+  .CRUD h1 {
+    font-size: 28px;
+    margin-bottom: 0.5rem;
+  }
+  
+  .CRUD h2 {
+    font-size: 18px;
+  }
+  
+  .CRUD h4 {
+    font-size: 16px;
+    margin: 0.5rem 0 1rem 0;
+  }
+
+}
+
+
+
+@media screen and (max-width: 680px){
+  .main .title {
+    font-size: 25px;
+  }
+  
+  .main form {
+    width: 90%;
+  }
+  
+  .main form input{
+    width: 70%;
+    height: 35px;
+  }
+  
+  .main form button {
+    width: 30%;
+    height: 35px;
+  }
+  
+  .table {
+    width: 90%;
+  }
+
+  .table article h3 {
+    padding: 0.7rem ;
+    font-size: 17px;
+  }
+
+  .CRUD {
+    text-align: left;
+    margin-top: 2rem;
+  }
+  
+  .CRUD h1 {
+    font-size: 25px;
+    margin-bottom: 0.3rem;
+  }
+  
+  .CRUD h2 {
+    font-size: 16px;
+  }
+  
+  .CRUD h4 {
+    font-size: 14px;
+    margin: 0.5rem 0 1rem 0;
+  }
+
+}

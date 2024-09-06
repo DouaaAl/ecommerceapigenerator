@@ -1,0 +1,186 @@
+.orders {
+    margin: 3rem auto;
+    width: 80%;
+    text-align: center;
+}
+
+.title {
+    font-size: 3rem;
+    color: var(--darker-blue);
+    margin-bottom: 3rem;
+}
+
+.orders form {
+    width: 60%;
+    margin: 3rem auto;
+    height: 40px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.orders form input {
+    width: 80%;
+    height: 40px;
+    border: 1px solid var(--darker-blue);
+    outline: none;
+    padding: 7px;
+}
+
+.orders form select {
+    height: 40px;
+}
+
+.orders form button{
+    width: 20%;
+    height: 40px;
+    background-color: var(--darker-blue);
+    color: var(--white);
+    padding: 3px;
+}
+
+.table {
+    margin: 0 auto;
+}
+
+.table article {
+    display: grid;
+    grid-template-columns: repeat(3, calc(100%/3));
+    border: 1px solid var(--darker-blue);
+}
+
+.table article h3 {
+    border: 1px solid var(--darker-blue);
+    height: 100%;
+    width: 100%;
+    padding: 1rem 0;
+}
+
+.table article:first-child {
+    background-color: var(--darker-blue);
+}
+
+.table article:first-child h3 {
+    color: var(--white);
+    border-right: 1px solid var(--white);
+}
+
+.table article:first-child h3:last-child{
+    border-right: 0;
+}
+
+.CRUD {
+  text-align: left;
+  margin-top: 3rem;
+}
+
+.CRUD h1 {
+  font-size: 32px;
+  margin-bottom: 0.5rem;
+  color: var(--darker-blue);
+}
+
+.CRUD h2 {
+  font-size: 20px;
+  color: var(--dark-blue);
+}
+
+.CRUD h4 {
+  font-size: 16px;
+  margin: 0.5rem 0 1rem 0;
+}
+
+@media screen and (max-width: 1100px){
+    .orders {
+      width: 100%;
+    }
+    
+    .orders .title {
+      font-size: 35px;
+    }
+    
+    .orders form {
+      width: 80%;
+    }
+    
+    .orders form input{
+      width: 70%;
+    }
+    
+    .orders form button {
+      width: 30%;
+    }
+    
+    .table {
+      width: 80%;
+    }
+
+    .CRUD {
+      text-align: left;
+      margin: 2.2rem auto 1rem auto;
+      width: 90%;
+    }
+    
+    .CRUD h1 {
+      font-size: 28px;
+      margin-bottom: 0.5rem;
+    }
+    
+    .CRUD h2 {
+      font-size: 18px;
+    }
+    
+    .CRUD h4 {
+      font-size: 16px;
+      margin: 0.5rem 0 1rem 0;
+    }
+  }
+  
+  @media screen and (max-width: 680px){
+    .orders .title {
+      font-size: 25px;
+    }
+    
+    .orders form {
+      width: 90%;
+    }
+    
+    .orders form input{
+      width: 70%;
+      height: 35px;
+    }
+    
+    .orders form button {
+      width: 30%;
+      height: 35px;
+    }
+    
+    .table {
+      width: 90%;
+    }
+  
+    .table article h3 {
+      padding: 0.7rem ;
+      font-size: 17px;
+    }
+
+    .CRUD {
+      text-align: left;
+      margin-top: 2rem;
+    }
+    
+    .CRUD h1 {
+      font-size: 25px;
+      margin-bottom: 0.3rem;
+    }
+    
+    .CRUD h2 {
+      font-size: 16px;
+    }
+    
+    .CRUD h4 {
+      font-size: 14px;
+      margin: 0.5rem 0 1rem 0;
+    }
+  
+  }

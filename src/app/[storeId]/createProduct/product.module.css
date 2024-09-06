@@ -1,0 +1,311 @@
+.product {
+    margin: 3rem auto;
+    text-align: center;
+    min-height: 120vh;
+    height: fit-content;
+}
+
+.product .images {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 3rem;
+    margin: 3rem auto;
+    flex-wrap: wrap;
+}
+
+.product .emptyImage{
+    height: 240px;
+    width: 200px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border: 1px black dashed;
+    background: url("/placeholder.jpg") center/cover no-repeat;
+}
+
+.product form {
+    width: 80%;
+    height: 40px;
+    margin: 3rem auto;
+    display: flex;
+    align-items: center;
+}
+
+.product form input{
+    height: 40px;
+    padding: 7px;
+    width: 25%;
+    outline: none;
+    border: 1px solid var(--darker-blue);
+    border-right: none;
+}
+
+.product form select {
+    height: 40px;
+    width: 16%;
+    border-right: none;
+}
+
+.product form button {
+    width: 25%;
+    height: 40px;
+    color: var(--white);
+    background-color: var(--darker-blue);
+    cursor: pointer;
+    font-size: 18px;
+    font-weight: 600;
+}
+
+.addData {
+    display: grid;
+    grid-template-columns: repeat(3, calc(33.33% - 3rem));
+    margin: 0 auto;
+    width: 80%;
+    gap: 4.5rem;
+}
+
+.product .addData form {
+    width: 100%;
+    height: fit-content;
+}
+
+.product .addData form select,
+.product .addData form button {
+    width: 50%;
+    font-size: 14px;
+}
+
+.product .addData form   {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+}
+
+.product .addData form > div {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+}
+
+.product .addData form article {
+    margin-top: 1rem;
+    width: 100%;
+}
+
+.product .addData form article div {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin: 2rem auto;
+}
+
+.product .custom_file_upload {
+    border: 1px solid #ccc;
+    display: inline-block;
+    padding: 6px 12px;
+    cursor: pointer;
+    width: 50%;
+    height: 100%;
+}
+
+.product input[type="file"] {
+    display: none;
+}
+
+.product .lastForm {
+    display: grid;
+    width: 80%;
+    grid-template-columns: repeat(2, 50%);
+    height: 50px;
+    min-height: 30px;
+    justify-content: center;
+    align-items: center;
+}
+
+.product  .lastForm select{
+    width: 100%;
+    display: block;
+    outline: none;
+    height: 50px;
+}
+
+.product .lastForm textarea {
+    display: block;
+    height: 50px;
+    width: 100%;
+    padding: 7px;
+}
+
+@media screen and (max-width: 1100px){
+    .product form {
+        width: 90%;
+    }
+
+    .product .images {
+        gap: 2.5rem;
+    }
+    .product .emptyImage{
+        height: 200px;
+        width: 180px;
+    }
+
+    .product article{
+        height: 200px;
+        width: 180px;
+        display: flex;
+        flex-direction: column;
+    }
+
+    .product article img:first-child {
+        height: 170px;
+        width: 180px;
+    }
+
+    .product article img{
+        height: 30px;
+        object-fit: cover;
+    }
+
+    
+    .product  .lastForm select{
+        height: 45px;
+    }
+
+    .product form {
+        height: 35px;
+    }
+    
+    .product form input{
+        height: 35px;
+    }
+    
+    .product form select {
+        height: 35px;
+    }
+    
+    .product form button {
+        height: 35px;
+        font-size: 18px;
+    }
+    
+    .addData {
+        grid-template-columns: repeat(3, calc(33.33% - 1.5rem));
+        gap: 3rem;
+    }
+    
+    
+}
+
+@media screen and (max-width: 850px){
+    .product form {
+        width: 90%;
+    }
+
+    .product .images {
+        gap: 2rem;
+    }
+    
+    .product .emptyImage{
+        height: 170px;
+        width: 150px;
+    }
+
+    .product article{
+        height: 170px;
+        width: 150px;
+        display: flex;
+        flex-direction: cover;
+    }
+
+    .product article img:first-child {
+        height: 140px;
+        width: 180px;
+    }
+
+    .product article img{
+        height: 30px;
+        object-fit: cover;
+    }
+
+    .product  .lastForm select{
+        height: 45px;
+    }
+
+    .product form {
+        height: 35px;
+    }
+    
+    .product form input{
+        height: 35px;
+    }
+    
+    .product form select {
+        height: 35px;
+    }
+    
+    .product form button {
+        height: 35px;
+        font-size: 16px;
+    }
+    
+    .addData {
+        display: block;
+        gap: 0;
+    }
+    
+    .product .addData form article div {
+        margin: 1rem auto;
+        height: 20px;
+        justify-content: center;
+        margin: 0.2rem auto;
+    }
+    
+    .product .addData form article {
+        margin-top: 1rem;
+        height: 20px;
+    }
+    
+    
+}
+
+
+@media screen and (max-width: 650px){
+    .product form {
+        width: 90%;
+    }
+    .product .images {
+        gap: 1.5rem;
+    }
+    
+    .product .emptyImage{
+        height: 110px;
+        width: 100px;
+    }
+
+    .product article{
+        height: 110px;
+        width: 100px;
+        display: flex;
+        flex-direction: column;
+    }
+
+    .product article img:first-child {
+        height: 80px;
+        width: 180px;
+    }
+
+    .product article img{
+        height: 30px;
+        object-fit: cover;
+    }
+
+    .product form button {
+        height: 35px;
+        font-size: 14px;
+    }
+}
+
