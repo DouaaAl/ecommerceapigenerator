@@ -1,9 +1,9 @@
 import { db } from "@/utils/db"
 import { auth } from "@clerk/nextjs/server";
 import { NextApiRequest, NextApiResponse } from "next"
-import { NextResponse } from "next/server"
+import { NextRequest, NextResponse } from "next/server"
 
-export const GET = async(req: any | NextApiRequest, res: NextApiResponse) =>{
+export const GET = async(req: any | Request | NextRequest, res: NextApiResponse) =>{
     const storeId = req.url.split("/")[req.url.split("/").length - 2];
     const categories = await db.category.findMany({
         where:{
@@ -14,7 +14,7 @@ export const GET = async(req: any | NextApiRequest, res: NextApiResponse) =>{
     return new NextResponse(JSON.stringify(categories), {status: 200})
 }
 
-export const POST = async(req: any | NextApiRequest, res: NextApiResponse) => {
+export const POST = async(req: any | Request | NextRequest, res: NextApiResponse) => {
     const storeId = req.url.split("/")[req.url.split("/").length - 2];
     const body = await req.json();
     const {name} = body;

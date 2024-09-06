@@ -1,8 +1,8 @@
 import { db } from "@/utils/db";
 import { NextApiRequest, NextApiResponse } from "next";
-import { NextResponse } from "next/server";
+import { NextRequest, NextResponse } from "next/server";
 
-export const GET = async(req: NextApiRequest | any, res: NextApiResponse) =>{
+export const GET = async(req: NextRequest | Request | any, res: NextApiResponse) =>{
 
     const storeId = req.url.split("/")[req.url.split("/").length - 2]
     const orders = await db.order.findMany({
@@ -19,7 +19,7 @@ export const GET = async(req: NextApiRequest | any, res: NextApiResponse) =>{
       return new NextResponse(JSON.stringify(orders), {status: 200})
 }
 
-export const POST = async (req: NextApiRequest | any, res: NextApiResponse) => {
+export const POST = async (req: NextRequest | Request | any, res: NextApiResponse) => {
   try {
     const storeId = req.url.split("/")[req.url.split("/").length - 2];
     const body = await req.json();

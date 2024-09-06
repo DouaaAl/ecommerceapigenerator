@@ -20,7 +20,7 @@ export const GET =async (req: Request | NextRequest, res: NextApiResponse) =>{
     return new NextResponse(JSON.stringify(product), {status: 200})
 }
 
-export const DELETE = async (req: NextApiRequest, res: NextApiResponse) => {
+export const DELETE = async (req: Request | NextRequest, res: NextApiResponse) => {
     const productId = req.url?.split("/")[req.url?.split("/").length - 1];
 
     if (!productId) {
@@ -62,7 +62,7 @@ export const DELETE = async (req: NextApiRequest, res: NextApiResponse) => {
     }
 };
 
-export const PUT =async (req: any | NextApiRequest, res: NextApiResponse) =>{
+export const PUT =async (req: any | Request | NextRequest, res: NextApiResponse) =>{
     console.log("inside put");
     const productId = req.url?.split("/")[req.url?.split("/").length - 1];
     console.log("product Id", productId)
@@ -93,7 +93,6 @@ export const PUT =async (req: any | NextApiRequest, res: NextApiResponse) =>{
         }
     })
 
-    console.log("product :", product);
 
     return new NextResponse(JSON.stringify(product), {status: 200})
 }

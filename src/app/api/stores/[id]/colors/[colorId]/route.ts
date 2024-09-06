@@ -1,8 +1,8 @@
 import { db } from "@/utils/db";
 import { NextApiRequest, NextApiResponse } from "next";
-import { NextResponse } from "next/server";
+import { NextRequest, NextResponse } from "next/server";
 
-export const PUT = async(req: any | NextApiRequest, res: NextApiResponse) => {
+export const PUT = async(req: any | NextRequest | Request, res: NextApiResponse) => {
     const colorId = req.url.split("/")[req.url.split("/").length - 1];
     const storeId = req.url.split("/")[req.url.split("/").length - 3];
 
@@ -24,7 +24,7 @@ export const PUT = async(req: any | NextApiRequest, res: NextApiResponse) => {
     return new NextResponse(JSON.stringify(color), {status: 200})
 }
 
-export const DELETE = async(req: any | NextApiRequest, res: NextApiRequest) =>{
+export const DELETE = async(req: any | NextRequest | Request, res: NextApiRequest) =>{
     const colorId = req.url.split("/")[req.url.split("/").length - 1];
 
     const color = await db.color.delete({

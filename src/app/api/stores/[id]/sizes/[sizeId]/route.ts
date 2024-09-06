@@ -1,8 +1,8 @@
 import { db } from "@/utils/db";
 import { NextApiRequest, NextApiResponse } from "next";
-import { NextResponse } from "next/server";
+import { NextRequest, NextResponse } from "next/server";
 
-export const PUT = async(req: any | NextApiRequest, res: NextApiResponse) =>{
+export const PUT = async(req: any | NextRequest | Request, res: NextApiResponse) =>{
     const sizeId = req.url.split("/")[req.url.split("/").length - 1];
     const body = await req.json();
     const {newname} = body;
@@ -19,7 +19,7 @@ export const PUT = async(req: any | NextApiRequest, res: NextApiResponse) =>{
     return new NextResponse(JSON.stringify(updatedSize), {status: 200})
 }
 
-export const DELETE = async(req: any | NextApiRequest, res: NextApiResponse) =>{
+export const DELETE = async(req: any | NextRequest | Request, res: NextApiResponse) =>{
     const sizeId = req.url.split("/")[req.url.split("/").length - 1];
     
     const deleteSize = await db.size.delete({

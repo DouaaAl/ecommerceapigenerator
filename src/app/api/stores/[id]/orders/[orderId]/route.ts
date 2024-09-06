@@ -1,8 +1,8 @@
 import { db } from "@/utils/db";
 import { NextApiRequest, NextApiResponse } from "next";
-import { NextResponse } from "next/server";
+import { NextRequest, NextResponse } from "next/server";
 
-export const PUT = async(req: any | NextApiRequest, res: NextApiResponse) =>{
+export const PUT = async(req: any | NextRequest | Request, res: NextApiResponse) =>{
     try {
             const orderId = req.url.split("/")[req.url.split("/").length - 1];
             const body = await req.json();
@@ -33,7 +33,7 @@ export const PUT = async(req: any | NextApiRequest, res: NextApiResponse) =>{
           }
 }
 
-export const DELETE = async(req: any | NextApiRequest, res: NextApiResponse) =>{
+export const DELETE = async(req: any | NextRequest | Request, res: NextApiResponse) =>{
         const orderId = req.url.split("/")[req.url.split("/").length - 1];  
 
         const order =  await db.order.findUnique({
@@ -67,7 +67,7 @@ export const DELETE = async(req: any | NextApiRequest, res: NextApiResponse) =>{
 
 }
 
-export const GET = async(req: any | NextApiRequest, res: NextApiResponse) =>{
+export const GET = async(req: any | NextRequest | Request, res: NextApiResponse) =>{
   try {
           const orderId = req.url.split("/")[req.url.split("/").length - 1];
 

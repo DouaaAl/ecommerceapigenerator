@@ -1,8 +1,8 @@
 import { db } from "@/utils/db";
 import { NextApiRequest, NextApiResponse } from "next";
-import { NextResponse } from "next/server";
+import { NextRequest, NextResponse } from "next/server";
 
-export const GET = async(req: NextApiRequest, res: NextApiResponse) =>{
+export const GET = async(req: NextRequest | Request, res: NextApiResponse) =>{
     const products = await db.product.findMany({
       include: {
         Categories: true,
@@ -15,7 +15,7 @@ export const GET = async(req: NextApiRequest, res: NextApiResponse) =>{
     return new NextResponse(JSON.stringify(products), {status: 200})
 }
 
-export const POST = async (req: any | NextApiRequest, res: NextApiResponse) => {
+export const POST = async (req: any | NextRequest | Request, res: NextApiResponse) => {
   try {
     const storeId = req.url.split("/").slice(-2, -1)[0];
     const body = await req.json().catch(() => ({}));
