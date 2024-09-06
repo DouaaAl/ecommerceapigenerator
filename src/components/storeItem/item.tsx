@@ -3,10 +3,16 @@ import React, { useState } from 'react'
 import Styles from '@/app/(main)/page.module.css'
 import Image from 'next/image'
 import { revalidatePath, revalidateTag } from 'next/cache'
-import {deleteStore, updateStore} from "@/actions/store.ts"
+import {deleteStore, updateStore} from "@/actions/store"
 import { redirect, useRouter } from 'next/navigation'
 
-const item = ({id, name, userId}) => {
+interface item {
+    id: string,
+    name: string,
+    userId: string
+}
+
+const item = ({id, name, userId}: item) => {
     const [isUpdate, setIsUpdate] = useState(false);
     const [newname, setNewname] = useState("");
     const [error, setError] = useState({
