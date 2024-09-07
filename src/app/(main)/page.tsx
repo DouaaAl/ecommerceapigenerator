@@ -10,7 +10,8 @@ const getBaseUrl = () => {
   if (typeof window !== 'undefined') {
     return window.location.origin;
   }
-  return process.env.NEXT_PUBLIC_API_URL || "http://localhost:3000";
+
+  return '';
 };
 
 const Home = async () => {
@@ -27,24 +28,24 @@ const Home = async () => {
     {
       title: "RETRIEVE ALL:",
       method: "GET",
-      link: `${baseUrl}/api/stores`
+      link: `/api/stores`
     },
     {
       title: "CREATE STORE:",
       method: "POST",
-      link: `${baseUrl}/api/stores`,
+      link: `/api/stores`,
       data: "{name: \"example-name\"}"
     },
     {
       title: "CHANGE STORE NAME:",
       method: "PUT",
-      link: `${baseUrl}/api/stores/[id]`,
+      link: `/api/stores/[id]`,
       data: "{name: \"example-name\"}"
     },
     {
       title: "DELETE STORE:",
       method: "DELETE",
-      link: `${baseUrl}/api/stores/[id]`
+      link: `/api/stores/[id]`
     }
   ];
 
@@ -85,7 +86,6 @@ const Home = async () => {
     });
   }
 
-  // Ensure that 'existUser.id' is valid
   if (existUser) {
     stores = stores.filter((store: any) => store.userId === existUser.id);
   }
@@ -106,7 +106,6 @@ const Home = async () => {
       revalidateTag("stores");
     } catch (error) {
       console.error('Failed to create store:', error);
-      // Handle error appropriately
     }
   };
 
