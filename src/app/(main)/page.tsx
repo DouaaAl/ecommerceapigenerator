@@ -4,88 +4,118 @@ import { redirect } from "next/navigation";
 import { currentUser } from "@clerk/nextjs/server";
 import { db } from "@/utils/db";
 import { revalidateTag } from "next/cache";
-import StoreItem from "@/components/storeItem/item"
+import StoreItem from "@/components/storeItem/item";
+
+const getBaseUrl = () => {
+  if (typeof window !== 'undefined') {
+    return window.location.origin;
+  }
+  return process.env.NEXT_PUBLIC_API_URL || "http://localhost:3000";
+};
 
 const Home = async () => {
   const { userId } = auth();
 
   if (!userId) {
     redirect("/sign-up");
+    return; 
   }
+
+  const baseUrl = getBaseUrl();
 
   const APIARRAY = [
     {
-      title: "RETREIVE ALL:",
+      title: "RETRIEVE ALL:",
       method: "GET",
-      link:"http://localhost:3000/api/stores"
+      link: `${baseUrl}/api/stores`
     },
     {
       title: "CREATE STORE:",
       method: "POST",
-      link: "http://localhost:3000/api/stores",
+      link: `${baseUrl}/api/stores`,
       data: "{name: \"example-name\"}"
     },
     {
       title: "CHANGE STORE NAME:",
       method: "PUT",
-      link: "http://localhost:3000/api/stores/[id]",
+      link: `${baseUrl}/api/stores/[id]`,
       data: "{name: \"example-name\"}"
     },
     {
       title: "DELETE STORE:",
       method: "DELETE",
-      link: "http://localhost:3000/api/stores/[id]"
+      link: `${baseUrl}/api/stores/[id]`
     }
-  ]
-  const res = await fetch("http://localhost:3000/api/stores", {
-    cache: "no-cache",
-    next: {
-      tags: ["stores"]
-    }
-  });
+  ];
 
-  let stores = await res.json();
+  let stores = [];
+
+  try {
+    const res = await fetch(`${baseUrl}/api/stores`, {
+      cache: "no-cache",
+      next: {
+        tags: ["stores"]
+      }
+    });
+
+    if (!res.ok) {
+      throw new Error(`HTTP error! status: ${res.status}`);
+    }
+
+    stores = await res.json();
+  } catch (error) {
+    console.error('Failed to fetch stores:', error);
+  }
 
   const loggedUser = await currentUser();
   let existUser = await db.user.findUnique({
-    where:{
+    where: {
       clerkUserId: loggedUser?.id
     }
-  })
+  });
 
-  if(!existUser){
-    existUser= await db.user.create({
+  if (!existUser) {
+    existUser = await db.user.create({
       data: {
         clerkUserId: loggedUser?.id || "",
         name: `${loggedUser?.firstName} ${loggedUser?.lastName}`,
         imageUrl: loggedUser?.imageUrl,
         email: loggedUser?.emailAddresses[0].emailAddress || ""
       }
-    })
+    });
   }
-  stores = stores.filter((store: any) => store.userId == existUser?.id);
 
+  // Ensure that 'existUser.id' is valid
+  if (existUser) {
+    stores = stores.filter((store: any) => store.userId === existUser.id);
+  }
 
   const createStore = async (e: FormData) => {
     "use server";
     const storeName = e.get("name")?.toString();
-    await fetch("http://localhost:3000/api/stores", {
-      method: "POST",
-      body: JSON.stringify({ name: storeName, userId: existUser.id }),
-      headers: {
-        "Content-Type": "application/json",
-      },
-    });
 
-    revalidateTag("stores");
+    try {
+      await fetch(`${baseUrl}/api/stores`, {
+        method: "POST",
+        body: JSON.stringify({ name: storeName, userId: existUser.id }),
+        headers: {
+          "Content-Type": "application/json",
+        },
+      });
+
+      revalidateTag("stores");
+    } catch (error) {
+      console.error('Failed to create store:', error);
+      // Handle error appropriately
+    }
   };
 
   return (
     <main className={Styles.main}>
-      <h1 className={Styles.title}>Create A new Store</h1>
+      <h1 className={Styles.title}>Create A New Store</h1>
       <form action={createStore}>
         <input name="name" id="name" type="text" placeholder="Store Name..." />
-        <button>Create</button>
+        <button type="submit">Create</button>
       </form>
       <div className={Styles.table}>
         <article>
@@ -93,21 +123,19 @@ const Home = async () => {
           <h3>Change</h3>
         </article>
         {stores.map((store: any) => (
-          <StoreItem userId={existUser.id} name={store.name} id={store.id} />
+          <StoreItem key={store.id} userId={existUser.id} name={store.name} id={store.id} />
         ))}
       </div>
       <div className={Styles.CRUD}>
         <h1>STORE API:</h1>
-        {
-          APIARRAY.map((item: any) =>{
-            return <article>
-              <h1>{item.title}</h1>
-              <h2>{item.method}:</h2>
-              <h4>{item.link}</h4>
-              {item.data && <h4>BODY: {item.data}</h4> }
-            </article>
-          })
-        }
+        {APIARRAY.map((item: any) => (
+          <article key={item.link}>
+            <h1>{item.title}</h1>
+            <h2>{item.method}:</h2>
+            <h4>{item.link}</h4>
+            {item.data && <h4>BODY: {item.data}</h4>}
+          </article>
+        ))}
       </div>
     </main>
   );
