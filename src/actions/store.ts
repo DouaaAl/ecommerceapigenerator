@@ -47,7 +47,7 @@ export const deleteStore = async (id: string) =>{
     const deletedStore = await db.store.delete({
         where: {
             id: id,
-            userId: user.id
+            userId: user?.id
         }
     })
 
