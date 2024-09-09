@@ -34,13 +34,15 @@ export const getUserStoresServer = async() =>{
             clerkUserId: loggedUser?.id
         }
     })
-    const stores = await db.store.findMany({
-        where: {
-            userId: userDB.id
-        }
-    })
-
-    return stores;
+    if (userDB && loggedUser && userDB.id){
+        const stores = await db.store.findMany({
+            where: {
+                userId: userDB.id
+            }
+        })
+    
+        return stores;
+    }
 }
 
 export const deleteStore = async (id: string) =>{
