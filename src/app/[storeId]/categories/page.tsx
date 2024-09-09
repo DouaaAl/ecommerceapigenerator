@@ -15,24 +15,24 @@ const page = () => {
     {
       title: "RETREIVE ALL:",
       method: "GET",
-      link:`http://localhost:3000/api/stores/${params}/categories`
+      link:`https://ecommerceapigenerator.vercel.app/api/stores/${params}/categories`
     },
     {
       title: "CREATE CATEGORY:",
       method: "POST",
-      link: `http://localhost:3000/api/stores/${params}/categories`,
+      link: `https://ecommerceapigenerator.vercel.app/api/stores/${params}/categories`,
       data: "{name: \"example-name\"}"
     },
     {
       title: "CHANGE CATEGORY NAME:",
       method: "PUT",
-      link: `http://localhost:3000/api/stores/${params}/categories/[id]`,
+      link: `https://ecommerceapigenerator.vercel.app/api/stores/${params}/categories/[id]`,
       data: "{name: \"example-name\"}"
     },
     {
       title: "DELETE CATEGORY:",
       method: "DELETE",
-      link: `http://localhost:3000/api/stores/${params}/categories/[id]`
+      link: `https://ecommerceapigenerator.vercel.app/api/stores/${params}/categories/[id]`
     }
   ]
   

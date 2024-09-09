@@ -12,12 +12,12 @@ const page = () => {
     {
       title: "RETREIVE ALL:",
       method: "GET",
-      link:`http://localhost:3000/api/stores/${storeId}/orders`
+      link:`https://ecommerceapigenerator.vercel.app/api/stores/${storeId}/orders`
     },
     {
       title: "CREATE ORDER:",
       method: "POST",
-      link: `http://localhost:3000/api/stores/${storeId}/orders`,
+      link: `https://ecommerceapigenerator.vercel.app/api/stores/${storeId}/orders`,
       data: JSON.stringify({
         "totalAmount": 75,
         "status": "PENDING",
@@ -50,7 +50,7 @@ const page = () => {
     {
       title: "CHANGE ORDER NAME:",
       method: "PUT",
-      link: `http://localhost:3000/api/stores/${storeId}/orders/[id]`,
+      link: `https://ecommerceapigenerator.vercel.app/api/stores/${storeId}/orders/[id]`,
       data: JSON.stringify({
         "totalAmount": 75,
         "status": "PENDING",
@@ -83,7 +83,7 @@ const page = () => {
     {
       title: "DELETE ORDER:",
       method: "DELETE",
-      link: `http://localhost:3000/api/stores/${storeId}/orders/[id]`
+      link: `https://ecommerceapigenerator.vercel.app/api/stores/${storeId}/orders/[id]`
     }
   ]
 

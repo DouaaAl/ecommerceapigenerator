@@ -13,24 +13,24 @@ const page = () => {
         {
           title: "RETREIVE ALL:",
           method: "GET",
-          link:`http://localhost:3000/api/stores/${storeId}/colors`
+          link:`https://ecommerceapigenerator.vercel.app/api/stores/${storeId}/colors`
         },
         {
           title: "CREATE COLOR:",
           method: "POST",
-          link: `http://localhost:3000/api/stores/${storeId}/colors`,
+          link: `https://ecommerceapigenerator.vercel.app/api/stores/${storeId}/colors`,
           data: "{name: \"example-name\"}"
         },
         {
           title: "CHANGE COLOR NAME:",
           method: "PUT",
-          link: `http://localhost:3000/api/stores/${storeId}/colors/[id]`,
+          link: `https://ecommerceapigenerator.vercel.app/api/stores/${storeId}/colors/[id]`,
           data: "{name: \"example-name\"}"
         },
         {
           title: "DELETE COLOR:",
           method: "DELETE",
-          link: `http://localhost:3000/api/stores/${storeId}/colors/[id]`
+          link: `https://ecommerceapigenerator.vercel.app/api/stores/${storeId}/colors/[id]`
         }
       ]
     const getColors = async()=>{

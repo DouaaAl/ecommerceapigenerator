@@ -10,24 +10,24 @@ const Home =  () => {
     {
       title: "RETREIVE ALL:",
       method: "GET",
-      link:"http://localhost:3000/api/stores"
+      link:"https://ecommerceapigenerator.vercel.app/api/stores"
     },
     {
       title: "CREATE STORE:",
       method: "POST",
-      link: "http://localhost:3000/api/stores",
+      link: "https://ecommerceapigenerator.vercel.app/api/stores",
       data: "{name: \"example-name\"}"
     },
     {
       title: "CHANGE STORE NAME:",
       method: "PUT",
-      link: "http://localhost:3000/api/stores/[id]",
+      link: "https://ecommerceapigenerator.vercel.app/api/stores/[id]",
       data: "{name: \"example-name\"}"
     },
     {
       title: "DELETE STORE:",
       method: "DELETE",
-      link: "http://localhost:3000/api/stores/[id]"
+      link: "https://ecommerceapigenerator.vercel.app/api/stores/[id]"
     }
   ]
 

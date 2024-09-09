@@ -15,24 +15,24 @@ const page = () => {
     {
       title: "RETREIVE ALL:",
       method: "GET",
-      link:`http://localhost:3000/api/stores/${params}/sizes`
+      link:`https://ecommerceapigenerator.vercel.app/api/stores/${params}/sizes`
     },
     {
       title: "CREATE SIZE:",
       method: "POST",
-      link: `http://localhost:3000/api/stores/${params}/sizes`,
+      link: `https://ecommerceapigenerator.vercel.app/api/stores/${params}/sizes`,
       data: "{name: \"example-name\"}"
     },
     {
       title: "CHANGE SIZE:",
       method: "PUT",
-      link: `http://localhost:3000/api/stores/${params}/sizes/[id]`,
+      link: `https://ecommerceapigenerator.vercel.app/api/stores/${params}/sizes/[id]`,
       data: "{name: \"example-name\"}"
     },
     {
       title: "DELETE SIZE:",
       method: "DELETE",
-      link: `http://localhost:3000/api/stores/${params}/sizes/[id]`
+      link: `https://ecommerceapigenerator.vercel.app/api/stores/${params}/sizes/[id]`
     }
   ]
   const getSizes = async() =>{
