@@ -8,7 +8,7 @@ import { getCategoriesAPI, createCategoryAPI } from '@/actions/category'
 
 const page = () => {
 
-  const [categories, setCategories] = useState([]);
+  const [categories, setCategories] = useState<any>([]);
   const [name, setName] = useState("");
   const params = useParams().storeId;
   const APIARRAY = [
