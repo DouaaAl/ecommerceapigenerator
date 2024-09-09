@@ -16,7 +16,6 @@ export const getUserId = async()=>{
 
 export const createStoreServer = async(name: string) =>{
     const userDB = await getUserId();
-    if (userDB){
         const stores = await db.store.create({
             data:{
                 name,
@@ -24,7 +23,6 @@ export const createStoreServer = async(name: string) =>{
             }
         })
         return stores;
-    }
 }
 
 export const getUserStoresServer = async() =>{
