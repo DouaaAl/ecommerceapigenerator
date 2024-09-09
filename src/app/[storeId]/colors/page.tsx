@@ -6,7 +6,7 @@ import { createColorAPI, getColorsAPI } from '@/actions/color'
 import { useParams } from 'next/navigation'
 
 const page = () => {
-    const [colors, setColors] = useState([]);
+    const [colors, setColors] = useState<any>([]);
     const [name, setName] = useState("");
     const storeId = useParams().storeId;
     const APIARRAY = [

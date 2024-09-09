@@ -8,7 +8,7 @@ import { useParams } from 'next/navigation'
 const page = () => {
 
   const params = useParams().storeId;
-  const [sizes, setSizes] = useState([]);
+  const [sizes, setSizes] = useState<any>([]);
   const [newname, setNewname] = useState("")
 
   const APIARRAY = [

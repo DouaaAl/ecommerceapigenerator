@@ -6,7 +6,7 @@ import { getOrdersAPI } from '@/actions/order'
 import { useParams } from 'next/navigation'
 
 const page = () => {
-  const [orders, setOrders] = useState([])
+  const [orders, setOrders] = useState<any>([])
   const storeId = useParams().storeId;
   const APIARRAY = [
     {
