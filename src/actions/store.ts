@@ -19,7 +19,7 @@ export const createStoreServer = async(name: string) =>{
         const stores = await db.store.create({
             data:{
                 name,
-                userId: userDB.id
+                userId: userDB?.id
             }
         })
         return stores;
