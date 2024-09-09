@@ -34,13 +34,12 @@ export const getUserStoresServer = async() =>{
             clerkUserId: loggedUser?.id
         }
     })
-    if (userDB && loggedUser && userDB.id){
+    if (userDB && userDB != ""){
         const stores = await db.store.findMany({
             where: {
-                userId: userDB.id
+                userId: userDB.id as string
             }
         })
-    
         return stores;
     }
 }
