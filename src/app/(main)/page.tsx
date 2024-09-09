@@ -40,9 +40,9 @@ const Home =  () => {
   }
   const createUserStore = async() =>{
     if(name){
+      console.log("new store name: ", name)
       const res: any = await createStoreServer(name);
       await getUserStores();
-
     }
   }
 

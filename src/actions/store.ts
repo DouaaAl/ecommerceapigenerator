@@ -16,14 +16,15 @@ export const getUserId = async()=>{
 
 export const createStoreServer = async(name: string) =>{
     const userDB = await getUserId();
-
-    const stores = await db.store.create({
-        data:{
-            name,
-            userId: userDB.id
-        }
-    })
-    return stores;
+    if (userDB){
+        const stores = await db.store.create({
+            data:{
+                name,
+                userId: userDB.id
+            }
+        })
+        return stores;
+    }
 }
 
 export const getUserStoresServer = async() =>{
