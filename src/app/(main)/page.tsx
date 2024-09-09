@@ -31,7 +31,7 @@ const Home =  () => {
     }
   ]
 
-  const [stores, setStores] = useState([]);
+  const [stores, setStores] = useState<any>([]);
   const [name, setName] = useState<string>("");
 
   const getUserStores = async() =>{
@@ -43,7 +43,6 @@ const Home =  () => {
       const res: any = await createStoreServer(name);
       await getUserStores();
 
-      console.log(res);
     }
   }
 
@@ -65,7 +64,7 @@ const Home =  () => {
           <h3>Store</h3>
           <h3>Change</h3>
         </article>
-        {stores.map((store: any) => (
+        {stores?.map((store: any) => (
           <StoreItem getUserStores={getUserStores} name={store.name} id={store.id} />
         ))}
       </div>
