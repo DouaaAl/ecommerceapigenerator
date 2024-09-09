@@ -11,7 +11,6 @@ import {
   UserButton
 } from '@clerk/nextjs'
 const inter = Inter({ subsets: ["latin"] });
-import { EdgeStoreProvider } from "@/lib/edgestore";
 
 export const metadata: Metadata = {
   title: "Create Next App",
@@ -26,13 +25,11 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body className={inter.className}>
-        <EdgeStoreProvider>
           <ClerkProvider>
             <Navbar />
               {children}
             <Footer />
           </ClerkProvider>
-        </EdgeStoreProvider>
         </body>
     </html>
   );

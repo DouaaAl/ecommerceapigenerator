@@ -1,53 +1,50 @@
 "use server"
-import { auth } from "@clerk/nextjs/server"
-import { revalidateTag } from "next/cache"
+import { db } from "@/utils/db"
 
 export const getCategoriesAPI = async(storeId: string | string[]) =>{
-    const res = await fetch(`http://localhost:3000/api/stores/${storeId}/categories`,{
-        cache: 'no-cache',
-        headers: {
-            "Content-Type": "application/json",
-          }
+    const res = await db.category.findMany({
+        where:{
+            storeId: storeId as string
+        }
     })
-    const categories = await res.json();
-    return categories;
+
+    return res;
 }
 
 export const updateCategoryAPI = async(storeId: string | string[], id: string, newname: string) =>{
-    const res = await fetch(`http://localhost:3000/api/stores/${storeId}/categories/${id}`,{
-        method: 'PUT',
-        cache: 'no-cache',
-        headers: {
-            "Content-Type": "application/json",
-          },
-        body: JSON.stringify({id, newname})
+    const res = await db.category.update({
+        where:{
+            id: id,
+            storeId: storeId as string
+        },
+        data:{
+            name: newname
+        }
     })
-    return res.json();
+
+    return res
 }
 
 export const deleteCategoryAPI = async(storeId: string | string[], id: string) => {
-    const res = await fetch(`http://localhost:3000/api/stores/${storeId}/categories/${id}`,{
-        method: 'DELETE',
-        cache: 'no-cache',
-        headers: {
-            "Content-Type": "application/json",
-          },
-        body: JSON.stringify({id})
-    })
-    return res.json();
+    const res = await db.category.delete({
+        where:{
+            id: id,
+            storeId: storeId as string
+        }
+    });
+
+    return res;
 }
 
 export const createCategoryAPI = async(storeId: string | string[], name: string) =>{
-    const res = await fetch(`http://localhost:3000/api/stores/${storeId}/categories`,{
-        method: 'POST',
-        cache: 'no-cache',
-        headers:{
-            "Content-Type": "application/json"
-        },
-        body: JSON.stringify({
-            name
-        })
-    })
+    const res = await db.category.create(
+        {
+            data:{
+                name: name,
+                storeId: storeId as string
+            }
+        }
+    );
 
-    return res.json();
+    return res;
 }

@@ -1,46 +1,50 @@
 "use server"
 
-export const getColorsAPI = async(storeId: String | String[]) =>{
-    const res = await fetch(`http://localhost:3000/api/stores/${storeId}/colors`);
-    const colors = await res.json()
-    
+import { db } from "@/utils/db";
 
-    return colors;
+export const getColorsAPI = async(storeId: String | String[]) =>{
+    const res = await db.color.findMany({
+        where:{
+            storeId: storeId as string
+        }
+    });
+
+    return res;
 }
 
 
-export const createColorAPI = async(storeId: String | String[], name: String) =>{
-    const res = await fetch(`http://localhost:3000/api/stores/${storeId}/colors`,{
-        method: 'POST',
-        cache: 'no-cache',
-        body: JSON.stringify({name})
-    });
-    const color = await res.json()
-    
+export const createColorAPI = async(storeId: String | String[], name: string) =>{
+    const res = await db.color.create({
+        data:{
+            name: name,
+            storeId: storeId as string
+        }
+    })
 
-    return color;
+    return res;
 }
 
 export const updateColorAPI = async(storeId: String | String[], id: string, newname: string) =>{
-    const res = await fetch(`http://localhost:3000/api/stores/${storeId}/colors/${id}`,{
-        method: 'PUT',
-        cache: 'no-cache',
-        body: JSON.stringify({newname})
-    });
-    const color = await res.json()
-    
+    const color = await db.color.update({
+        where: {
+            id: id,
+            storeId: storeId as string
+        },
+        data:{
+            name: newname
+        }
+    })
 
-    return color;
+    return color
 }
 
 export const deleteColorAPI = async(storeId: string | string[], id: string)=>{
-    const res = await fetch(`http://localhost:3000/api/stores/${storeId}/colors/${id}`,{
-        method: 'DELETE',
-        cache: 'no-cache',
-        body: JSON.stringify({})
+    const res = await db.color.delete({
+        where:{
+            storeId: storeId as string,
+            id: id
+        }
     });
-    const color = await res.json()
-    
 
-    return color;
+    return res;
 }

@@ -7,10 +7,10 @@ import {  useRouter } from 'next/navigation'
 interface item {
     id: string,
     name: string,
-    userId: string
+    getUserStores: Function
 }
 
-const item = ({id, name, userId}: item) => {
+const item = ({id, name, getUserStores}: item) => {
     const [isUpdate, setIsUpdate] = useState(false);
     const [newname, setNewname] = useState("");
     const [error, setError] = useState({
@@ -20,8 +20,8 @@ const item = ({id, name, userId}: item) => {
 
     const router = useRouter();
     const deleteItem = async() =>{
-        const deleletedStore = await deleteStore(id, userId);
-        router.refresh();
+        const deleletedStore = await deleteStore(id);
+        await getUserStores();
     }
 
     const updateItem = async() =>{
@@ -33,8 +33,8 @@ const item = ({id, name, userId}: item) => {
             setIsUpdate(false);
             return;
         }
-        const changeName = await updateStore(id, userId, newname);
-        router.refresh();
+        const changeName = await updateStore(id, newname);
+        await getUserStores();
         setIsUpdate(false);
     }
 

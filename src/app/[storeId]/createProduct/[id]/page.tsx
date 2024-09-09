@@ -2,19 +2,18 @@
 import React, { useEffect, useState } from 'react'
 import Image from 'next/image';
 import Styles from "../product.module.css"
-import { useEdgeStore } from '@/lib/edgestore';
 import { getSizesAPI } from '@/actions/size';
 import { useParams } from 'next/navigation';
 import { getCategoriesAPI } from '@/actions/category';
 import { getColorsAPI } from '@/actions/color';
 import { getProductAPI, updateProductAPI } from '@/actions/product';
-import { createImageAPI } from '@/actions/image';
+import { createImageAPI, uploadFiletoS3 } from '@/actions/image';
 import Loading from '@/components/loading/loading';
 
 const page = () => {
-    const [sizes, setSizes] = useState([]);
-    const [categories, setCategories] = useState([]);
-    const [colors, setColors] = useState([]);
+    const [sizes, setSizes] = useState<any>([]);
+    const [categories, setCategories] = useState<any>([]);
+    const [colors, setColors] = useState<any>([]);
     const [images, setImages]: any = useState([]);
     const [allowedImages, setAllowedImages]  = useState(["1", "2", "3", "4", "5"])
     const [data, setData]: any = useState({Sizes: [], Categories: [],  Color: [] })
@@ -32,7 +31,6 @@ const page = () => {
 
     const storeId = useParams().storeId;
     const productId = useParams().id;
-    const {edgestore} = useEdgeStore();
 
     const getData = async()=>{
         if(storeId){
@@ -89,13 +87,19 @@ const page = () => {
     const addImage = async(e: any) =>{
         e.preventDefault()
         if(file){
-            const res = await edgestore.myPublicImages.upload({
-                file
-            })
-            setImages([...images, res.url])
+            let link: string | undefined = "";
+            const reader = new FileReader();
+            reader.onloadend = async () => {
+              const base64String = reader.result as string;
+              const base64Data = base64String.replace(/^data:image\/[a-z]+;base64,/, "");
+              link = await uploadFiletoS3(base64Data);
+              setImages([...images, link as string])
+              console.log("resulted link ", link);
+            }
+            let result = reader.readAsDataURL(file);
             setAllowedImages(["1"]);
             setAllowedImages(["1", "2", "3", "4", "5"])
-            console.log(images);
+            console.log("result : ", result);
         }
     }
 

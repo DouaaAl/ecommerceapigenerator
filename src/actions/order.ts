@@ -1,41 +1,49 @@
 "use server"
 
+import { db } from "@/utils/db";
+
 export const getOrdersAPI = async(storeId: string | string[]) =>{
-    const res = await fetch(`http://localhost:3000/api/stores/${storeId}/orders`);
+    const res = await db.order.findMany({
+        where:{
+            storeId: storeId as string
+        }
+    });
 
-    const orders = await res.json();
-
-    return orders;
+    return res;
 }
 
 export const deleteOrderAPI = async(storeId: string | string[], orderId: string) => {
-    const res = await fetch(`http://localhost:3000/api/stores/${storeId}/orders/${orderId}`, {
-        cache: 'no-cache',
-        method: 'DELETE',
-        body: JSON.stringify({})
+    const res = await db.order.delete({
+        where:{
+            storeId: storeId as string,
+            id: orderId
+        }
     });
 
-    const order = await res.json();
-
-    return order
+    return res;
 }
 
 export const changeStatusAPI = async(storeId: string | string[], orderId: string, newStatus: string) =>{
-    const res = await fetch(`http://localhost:3000/api/stores/${storeId}/orders/${orderId}`, {
-        cache: 'no-cache',
-        method: 'PUT',
-        body: JSON.stringify({orderStatus: newStatus})
-    });
+    const res = await db.order.update({
+        where:{
+            storeId: storeId as string,
+            id: orderId
+        },
+        data:{
+            status: newStatus
+        }
+    })
 
-    const updatedOrder = await res.json();
-
-    return updatedOrder;
+    return res;
 }
 
 export const getOrderAPI = async(storeId: string | string[], orderId: string | string[]) =>{
-    const res = await fetch(`http://localhost:3000/api/stores/${storeId}/orders/${orderId}`);
+    const res = await db.order.findFirst({
+        where:{
+            storeId: storeId as string,
+            id: orderId as string
+        }
+    });
 
-    const order = await res.json();
-
-    return order;
+    return res;
 }

@@ -1,15 +1,12 @@
 "use client"
 import React, { useEffect, useState } from 'react'
 import Styles from "./categories.module.css"
-import Image from 'next/image'
 import Row from './row'
 
 import { useParams } from 'next/navigation'
 import { getCategoriesAPI, createCategoryAPI } from '@/actions/category'
 
 const page = () => {
-
-
 
   const [categories, setCategories] = useState([]);
   const [name, setName] = useState("");
@@ -49,7 +46,6 @@ const page = () => {
       return;
     }
     const res = await createCategoryAPI(params, name);
-    console.log(res);
     getCategories();
   }
 

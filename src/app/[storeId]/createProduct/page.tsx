@@ -2,23 +2,22 @@
 import React, { useEffect, useState } from 'react'
 import Image from 'next/image';
 import Styles from "./product.module.css"
-import { useEdgeStore } from '@/lib/edgestore';
 import { getSizesAPI } from '@/actions/size';
-import { redirect, useParams } from 'next/navigation';
+import {  useParams } from 'next/navigation';
 import { getCategoriesAPI } from '@/actions/category';
 import { getColorsAPI } from '@/actions/color';
 import { createProductAPI } from '@/actions/product';
-import { createImageAPI } from '@/actions/image';
+import { createImageAPI, uploadFiletoS3 } from '@/actions/image';
 import Loading from "@/components/loading/loading"
 
 const page = () => {
-    const [sizes, setSizes] = useState([]);
-    const [categories, setCategories] = useState([]);
-    const [colors, setColors] = useState([]);
-    const [images, setImages]: any = useState([]);
+    const [sizes, setSizes] = useState<any>([]);
+    const [categories, setCategories] = useState<any>([]);
+    const [colors, setColors] = useState<any>([]);
+    const [images, setImages] = useState<any>([]);
     const [allowedImages, setAllowedImages]  = useState(["1", "2", "3", "4", "5"])
     const [data, setData]: any = useState({Sizes: [], Categories: [],  Color: [] })
-    const [currentSize, setCurrentSize] = useState("");
+    const [currentSize, setCurrentSize] = useState<any>("");
     const [currentCategory, setCurrentCategory] = useState("");
     const [currentColor, setCurrentColor] = useState("");
     const [file, setFile] = React.useState<File>();
@@ -30,8 +29,10 @@ const page = () => {
     const [loading, setLoading] = useState(false);
 
     const storeId = useParams().storeId;
-    const {edgestore} = useEdgeStore();
-
+    const onlyUnique = (value: any, index: any, array: any) => {
+        return array.indexOf(value) === index;
+      }
+    
     const getData = async()=>{
         if(storeId){
             const res = await getCategoriesAPI(storeId);
@@ -85,15 +86,21 @@ const page = () => {
     const addImage = async(e: any) =>{
         e.preventDefault()
         if(file){
-            const res = await edgestore.myPublicImages.upload({
-                file
-            })
-            setImages([...images, res.url])
+            let link: string | undefined = "";
+            const reader = new FileReader();
+            reader.onloadend = async () => {
+              const base64String = reader.result as string;
+              const base64Data = base64String.replace(/^data:image\/[a-z]+;base64,/, "");
+              link = await uploadFiletoS3(base64Data);
+              setImages([...images, link as string])
+              console.log("resulted link ", link);
+            }
+            let result = reader.readAsDataURL(file);
             setAllowedImages(["1"]);
             setAllowedImages(["1", "2", "3", "4", "5"])
-            console.log(images);
+            console.log("result : ", result);
         }
-    }
+}
 
     // REMOVE DATA
     const removeSize =(size: string) =>{
@@ -130,9 +137,6 @@ const page = () => {
         setImages(newImages);
     }
 
-    const onlyUnique = (value: any, index: any, array: any) => {
-        return array.indexOf(value) === index;
-      }
       
     useEffect(()=>{
         getData();
